@@ -59,6 +59,13 @@ public:
         return static_cast<Q>(this->value_) & static_cast<Q>(flag);
     }
 
+    FlagsEnum &operator|(T flag)
+    {
+        this->set(flag, true);
+
+        return *this;
+    }
+
     bool hasAny(FlagsEnum flags) const
     {
         return static_cast<Q>(this->value_) & static_cast<Q>(flags.value_);
