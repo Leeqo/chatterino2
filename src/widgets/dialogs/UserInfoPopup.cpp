@@ -87,8 +87,15 @@ namespace {
     };
 }  // namespace
 
+#ifdef Q_OS_LINUX
+FlagsEnum<BaseWindow::Flags> userInfoPopupFlags{BaseWindow::Dialog,
+                                                BaseWindow::EnableCustomFrame};
+#else
+FlagsEnum<BaseWindow::Flags> userInfoPopupFlags{BaseWindow::EnableCustomFrame};
+#endif
+
 UserInfoPopup::UserInfoPopup()
-    : BaseWindow(BaseWindow::EnableCustomFrame)
+    : BaseWindow(userInfoPopupFlags)
     , hack_(new bool)
 {
     this->setWindowTitle("Usercard");
